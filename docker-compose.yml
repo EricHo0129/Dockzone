@@ -1,4 +1,4 @@
-version: '2'
+version: '2.4'
 
 services:
 
@@ -10,10 +10,12 @@ services:
   db:
     image: mariadb:latest
     environment:
-      - MYSQL_ROOT_PASSWORD = "root"
-      - MYSQL_USER = "eric"
-      - MYSQL_PASSWORD = "1234"
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_USER=eric"
+      - "MYSQL_PASSWORD=1234"
     volumes:
-      - "D:/Docker/data:/var/lib/mysql"
+      - "dbdata:/var/lib/mysql"
     ports:
       - "3306:3306"
+volumes:
+    dbdata: #這裡可以留空,Docker會在本機設置一個volume
