@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+
+  redis:  #用作快取與Session
+    image: redis:latest #有現成的image就直接使用不用build
+    ports:
+      - "6379:6379" #要對應的port不然接不到
+  
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD = "root"
+      - MYSQL_USER = "eric"
+      - MYSQL_PASSWORD = "1234"
+    volumes:
+      - "D:/Docker/data:/var/lib/mysql"
+    ports:
+      - "3306:3306"
