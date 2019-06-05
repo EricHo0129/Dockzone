@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+   web:
+    build:
+      context: .
+      dockerfile: web.docker 
+    ports:
+      - "80:80" #要對應的port不然接不到
+    links:
+      - app
+   app:
+    image: php:7.2.18-fpm
+    volumes:
+      - "/d/Myspace/Dockzone/php/public:/var/www/html"
