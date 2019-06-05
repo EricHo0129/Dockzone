@@ -1,0 +1,10 @@
+version: '2.4'
+
+services:
+
+  web:
+    image: web:latest #有現成的image就直接使用不用build
+    ports:
+      - "80:80" #要對應的port不然接不到
+    volumes:
+      - "/d/Myspace/Dockzone/nginx:/var/www/html"
