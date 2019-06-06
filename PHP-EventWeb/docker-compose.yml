@@ -1,0 +1,16 @@
+version: '2.4'
+
+services:
+  web:
+    build:
+      context: ../common
+      dockerfile: nginx-php.docker
+    image: nginx-php
+    container_name: "event-web"
+    volumes:
+      - "/d/Myspace/Dockzone/common/nginx-php.conf:/etc/nginx/sites-available/default"
+      - "/d/PHP_Projects/PHP-EventWeb:/var/www/html"
+    ports:
+      - "80:80"
+    environment:
+      envType: lab
