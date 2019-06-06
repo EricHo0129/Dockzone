@@ -1,0 +1,37 @@
+version: '2.4'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Develop
+    image: php-web
+    container_name: "108buy-ws"
+    volumes:
+      - "/d/Myspace/Dockzone/108buy/vhost.conf:/etc/nginx/sites-available/default"
+      - "/d/PHP_Projects/108buy:/var/www/html"
+    ports:
+      - "80:80"
+    environment:
+      envType: dev
+    networks:
+      - innerlink
+    depends_on:
+      - db
+  db:
+    image: mariadb:latest
+    container_name: "108buy-db"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=buybuy"
+    volumes:
+      - "maria-db:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    networks:
+      - innerlink
+volumes:
+  maria-db:
+    external: true
+networks:
+  innerlink:
+    driver: bridge

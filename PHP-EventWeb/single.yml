@@ -1,0 +1,16 @@
+version: '2.4'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: BuildSingle
+    image: eventweb
+    container_name: "event-container"
+    volumes:
+      - "/d/Myspace/Dockzone/PHP-EventWeb/vhost.conf:/etc/nginx/sites-available/default"
+      - "/d/PHP_Projects/PHP-EventWeb:/var/www/html"
+    ports:
+      - "80:80"
+    environment:
+      envType: lab
