@@ -5,6 +5,7 @@ services:
     image: nginx:latest
     volumes:
       - "/d/Myspace/Dockzone/PHP-EventWeb/vhost.conf:/etc/nginx/conf.d/default.conf"
+      - "/d/PHP_Projects/PHP-EventWeb/public:/var/www/html/public"
     container_name: "web-server"
     ports:
       - "80:80" #要對應的port不然接不到
