@@ -3,12 +3,12 @@ version: '2.4'
 services:
   web:
     build:
-      context: .
-      dockerfile: Develop
-    image: php-web
-    container_name: "108buy-ws"
+      context: ../common
+      dockerfile: nginx-php.docker
+    image: nginx-php
+    container_name: "108buy-web"
     volumes:
-      - "/d/Myspace/Dockzone/108buy/vhost.conf:/etc/nginx/sites-available/default"
+      - "/d/Myspace/Dockzone/common/nginx-php.conf:/etc/nginx/sites-available/default"
       - "/d/PHP_Projects/108buy:/var/www/html"
     ports:
       - "80:80"
@@ -22,7 +22,7 @@ services:
     image: mariadb:latest
     container_name: "108buy-db"
     environment:
-      - "MYSQL_ROOT_PASSWORD=buybuy"
+      - "MYSQL_ROOT_PASSWORD=admin2037"
     volumes:
       - "maria-db:/var/lib/mysql"
     ports:
