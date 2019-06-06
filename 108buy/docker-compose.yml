@@ -22,7 +22,9 @@ services:
     image: mariadb:latest
     container_name: "108buy-db"
     environment:
-      - "MYSQL_ROOT_PASSWORD=admin2037"
+      - "MYSQL_DATABASE=108buy"
+      - "MYSQL_USER=108buy"
+      - "MYSQL_PASSWORD=buybuy"
     volumes:
       - "maria-db:/var/lib/mysql"
     ports:

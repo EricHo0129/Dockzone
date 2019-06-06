@@ -1,0 +1,14 @@
+version: '2.4'
+
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      - "MYSQL_ROOT_PASSWORD=admin2037"
+    volumes:
+      - "maria-db:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+volumes:
+  maria-db:
+    external: true
