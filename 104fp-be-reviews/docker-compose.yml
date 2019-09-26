@@ -1,0 +1,39 @@
+version: '2.4'
+
+services:
+  web:
+    build:
+      context: ../common
+      dockerfile: nginx-php.docker
+    image: nginx-php
+    container_name: "104fp-be-reviews-web"
+    volumes:
+      - "/d/Myspace/Dockzone/common/nginx-php.conf:/etc/nginx/sites-available/default"
+      - "/d/PHP_Projects/104fp-be-reviews:/var/www/html"
+    ports:
+      - "80:80"
+    environment:
+      envType: dev
+    networks:
+      - innerlink
+    depends_on:
+      - db
+  db:
+    image: mariadb:latest
+    container_name: "reviews-db"
+    environment:
+      - "MYSQL_DATABASE=reviews"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD=reviews"
+    volumes:
+      - "reviews-data:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    networks:
+      - innerlink
+volumes:
+  reviews-data:
+    external: true
+networks:
+  innerlink:
+    driver: bridge
